@@ -1,21 +1,28 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import Auth from "./components/Auth/Auth";
+import EntriesPage from "./components/EntryManager/EntriesPage";
+import HomePage from "./components/Dashboard/HomePage";
 import store from "./reducers/store.js";
 
 function App() {
   return (
-    <Provider store={store}>
+    <GoogleOAuthProvider clientId="794956968618-b1o8rcuov3dv6po9a2h5o8q9dejgf980.apps.googleusercontent.com">
+      <Provider store={store}>
         <BrowserRouter>
           <div id="app-page-container">
             <Routes>
-              <Route path="/" element={<Auth/>}/> // Later change path to /auth when we have that up and running
+              <Route path="/" element={<HomePage/>}/>
+              <Route path="/auth" element={<Auth/>}/>
+              <Route path="/entries" element={<EntriesPage/>}/>
             </Routes>
           </div>
         </BrowserRouter>
       </Provider>
+    </GoogleOAuthProvider>
   );
 }
 

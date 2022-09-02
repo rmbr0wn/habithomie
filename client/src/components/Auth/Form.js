@@ -1,16 +1,18 @@
 import React from "react";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import PropTypes from "prop-types";
 
 const Form = (props) => (
   <div className="auth-form-container">
-    <h1 className="auth-form-h1"> {props.signedUp ? "Sign In" : "Sign Up"} </h1>
+    <h1 className="auth-form-header"> {props.isSignedUp ? "Sign In" : "Sign Up"} </h1>
+    {
+      props.successMessage && <h3 className="form-success-message">{props.successMessage}</h3>
+    }
     <form onSubmit={props.handleSubmit} className="auth-form">
-      {props.signedUp ?
+      {props.isSignedUp ?
         <div className="form-container-sign-in">
           <div className="form-field-container">
             <div className="auth-form-field">
-              <label className="auth-form-label">E-mail: </label>
               <input type="email"
                 required
                 name="loginEmail"
@@ -24,7 +26,6 @@ const Form = (props) => (
               }
             </div>
             <div className="auth-form-field">
-              <label className="auth-form-label">Password: </label>
               <input type="password"
                 required
                 name="loginPassword"
@@ -39,69 +40,47 @@ const Form = (props) => (
               </div>
             </div>
             <div className="form-button-container">
-              <button type="submit" id="loginButton" className="form-button auth-form-button"> Log In </button>
+              <button type="submit" id="loginButton" className="auth-form-button"> Log In </button>
             </div>
             <div className="form-button-container">
               <GoogleLogin
-              clientId="272154925137-pkh6c6dhhm79hj8enundingvnsl8vbnl.apps.googleusercontent.com"
-              render={(renderProps) => (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="form-button auth-form-button">Google Login</button>
-              )}
-              onSuccess={props.googleSuccess}
-              onFailure={props.googleFailure}
-              buttonText="Login"
-              cookiePolicy={"single_host_origin"}
+                onSuccess={props.googleSuccess}
+                onError={props.googleFailure}
               />
             </div>
           <div className="form-button-container">
-            <button type="button" onClick={props.switchFormType} className="form-button auth-form-button"> Create New Account </button>
+            <button type="button" onClick={props.switchFormType} className="auth-form-button"> Create New Account </button>
           </div>
         </div>
         :
         <div className="form-container-sign-up">
           <div className="auth-form-field">
-            <label className="auth-form-label">Username: </label>
-            <input type="text"
-              required
-              name="username"
-              onChange={props.handleChange}
-              placeholder="Username"
-              className="auth-form-input"
-            />
-            {
-              props.errors.username && <h3 className="form-error-message">{props.errors.username}</h3>
-            }
-          </div>
-          <div className="auth-form-field">
-            <label className="auth-form-label">Email: </label>
             <input type="email"
               required
-              name="email"
+              name="signupEmail"
               onChange={props.handleChange}
-              placeholder="E-mail"
+              placeholder="New e-mail"
               className="auth-form-input"
             />
             {
-              props.errors.email && <h3 className="form-error-message">{props.errors.email}</h3>
+              props.errors.signupEmail && <h3 className="form-error-message">{props.errors.signupEmail}</h3>
             }
           </div>
           <div className="auth-form-field">
-            <label className="auth-form-label">Password: </label>
             <input type="password"
               required
-              name="password"
+              name="signupPassword"
               onChange={props.handleChange}
-              placeholder="Password"
+              placeholder="New password"
               id="signupPassword"
-              ref={props.signupPassword}
+              ref={props.signupPasswordRef}
               className="auth-form-input"
             />
             {
-              props.errors.password && <h3 className="form-error-message">{props.errors.password}</h3>
+              props.errors.signupPassword && <h3 className="form-error-message">{props.errors.signupPassword}</h3>
             }
           </div>
           <div className="auth-form-field">
-            <label className="auth-form-label">Confirm Password: </label>
             <input type="password"
               required
               name="confirmPassword"
@@ -115,28 +94,32 @@ const Form = (props) => (
             }
           </div>
           <div className="form-button-container">
-            <button type="submit" name="submitQuery" className="form-button auth-form-button"> Submit </button>
+            <button type="submit" name="submitQuery" className="auth-form-button"> Submit </button>
           </div>
           <div className="form-button-container">
             <hr className="horizontal-rounded-divider"/>
             <p className="existing-account-text">Already have an account?  </p>
-            <button type="button" onClick={props.switchFormType} className="form-button auth-form-button"> Sign in </button>
+            <button type="button" onClick={props.switchFormType} className="auth-form-button"> Sign in </button>
           </div>
         </div>
+      }
+      {
+        props.errors.response && <h3 className="form-error-message">{props.errors.response}</h3>
       }
     </form>
   </div>
 );
 
 Form.propTypes = {
-  signedUp: PropTypes.bool,
+  isSignedUp: PropTypes.bool,
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
   errors: PropTypes.object,
+  successMessage: PropTypes.string,
   googleSuccess: PropTypes.func,
   googleFailure: PropTypes.func,
   switchFormType: PropTypes.func,
-  signupPassword: PropTypes.object
+  signupPasswordRef: PropTypes.object
 };
 
 export default Form;
