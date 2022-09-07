@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import Form from "./Form.js";
-import { signIn, signUp } from "../../actions/auth.js";
+import { signIn, signUp, googleAccountHandling } from "../../actions/auth.js";
 
 export default function Auth () {
   const initialState = { signupEmail: "", signupPassword: "", confirmPassword: "",
@@ -42,7 +42,6 @@ export default function Auth () {
       } else {
         setErrors(initialState);
       }
-
 
     } else {
         let signupRequest = await dispatch(signUp(formData, navigate));
@@ -89,10 +88,10 @@ export default function Auth () {
   }
 
   async function googleSuccess (response) {
-    console.log(response);
-    console.log(jwt_decode(response.credential));
+    let payload = { email: jwt_decode(response.credential).email };
 
-    // TODO: Make an actions call with credential data for creating/getting user
+    // Insert or retrieve google user from users DB
+    let googleRequest = await dispatch(googleAccountHandling(payload, navigate));
   }
 
   async function googleFailure (error) {

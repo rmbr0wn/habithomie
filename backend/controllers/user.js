@@ -22,7 +22,9 @@ export const signIn = async (req, res) => {
 		const token = jwt.sign({ email: existingUser.rows[0].email, id: existingUser.rows[0].user_id },
 			process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
 
-		res.status(200).json({ result: existingUser.rows[0], token });
+		let userResult = { user_id: existingUser.rows[0].user_id, email: existingUser.rows[0].email };
+
+		res.status(200).json({ result: userResult, token });
 	} catch (error) {
 		res.status(500).json({ message: "Something went wrong when signing in: ", error });
 	}
@@ -31,7 +33,7 @@ export const signIn = async (req, res) => {
 export const signUp = async (req, res) => {
 	const { signupEmail, signupPassword, confirmPassword } = req.body;
 
-	try{
+	try {
 		if (signupPassword !== confirmPassword) return res.status(400).json({ message: "The passwords don't match. "});
 
 		const encryptedPassword = await bcrypt.hash(signupPassword, 12);
@@ -58,3 +60,39 @@ export const signUp = async (req, res) => {
 		res.status(500).json({ message: "Something went wrong when signing up: ", error });
 	}
 };
+
+export const googleAccountHandling = async (req, res) => {
+	const { email } = req.body;
+
+	try {
+		let query = `SELECT * FROM users WHERE email = $1`;
+		let userCheck = await pool.query(query, [email]);
+
+		// Retrieve user if they exist, else insert into users table
+		if (userCheck.rowCount > 0) {
+			let userId = userCheck.rows[0].user_id;
+			let result = { email: email, id: userId };
+			const token = jwt.sign({ email: existingEmail, id: userId },
+				process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+
+			return res.status(200).json({ result: result, token });
+		} else {
+				query = `
+					INSERT INTO users (email)
+					VALUES ($1)
+					RETURNING user_id;
+				`;
+
+				const newUser = await pool.query(query, [email]);
+				let userId = newUser.rows[0].user_id;
+				let result = { email: email, id: userId };
+				const token = jwt.sign({ email: email, id: userId },
+					process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+
+				return res.status(201).json({ result: result, token });
+		}
+
+	} catch (error) {
+		res.status(500).json({ message: "Something went wrong with google account handling: ", error });
+	}
+}

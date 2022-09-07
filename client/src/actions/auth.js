@@ -26,3 +26,16 @@ export const signUp = (formData, navigation) => async (dispatch) => {
     return error;
   }
 };
+
+export const googleAccountHandling = (payload, navigation) => async (dispatch) => {
+  try {
+    const { data } = await instance.post("/user/google-user", payload);
+
+    dispatch({ type: "AUTH", data });
+
+    navigation("/");
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
