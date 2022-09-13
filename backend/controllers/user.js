@@ -13,11 +13,11 @@ export const signIn = async (req, res) => {
 		let query = `SELECT * FROM users WHERE email = $1`;
 		let existingUser = await pool.query(query, [loginEmail]);
 
-		if (existingUser.rowCount <= 0) return res.status(404).json({ message: "No account found with that email. "});
+		if (existingUser.rowCount <= 0) return res.status(404).json({ message: "No account found with that email."});
 
 		let isPasswordCorrect = await bcrypt.compare(loginPassword, existingUser.rows[0].password);
 
-		if (!isPasswordCorrect) return res.status(401).json({ message: "Invalid password. "});
+		if (!isPasswordCorrect) return res.status(401).json({ message: "Invalid password."});
 
 		const token = jwt.sign({ email: existingUser.rows[0].email, id: existingUser.rows[0].user_id },
 			process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
@@ -34,7 +34,7 @@ export const signUp = async (req, res) => {
 	const { signupEmail, signupPassword, confirmPassword } = req.body;
 
 	try {
-		if (signupPassword !== confirmPassword) return res.status(400).json({ message: "The passwords don't match. "});
+		if (signupPassword !== confirmPassword) return res.status(400).json({ message: "The passwords don't match."});
 
 		const encryptedPassword = await bcrypt.hash(signupPassword, 12);
 		let query = `SELECT * FROM users WHERE email = $1`;
@@ -72,7 +72,7 @@ export const googleAccountHandling = async (req, res) => {
 		if (userCheck.rowCount > 0) {
 			let userId = userCheck.rows[0].user_id;
 			let result = { email: email, id: userId };
-			const token = jwt.sign({ email: existingEmail, id: userId },
+			const token = jwt.sign({ email: email, id: userId },
 				process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
 
 			return res.status(200).json({ result: result, token });
@@ -91,7 +91,6 @@ export const googleAccountHandling = async (req, res) => {
 
 				return res.status(201).json({ result: result, token });
 		}
-
 	} catch (error) {
 		res.status(500).json({ message: "Something went wrong with google account handling: ", error });
 	}

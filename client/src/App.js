@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import Auth from "./components/Auth/Auth";
+import Navbar from "./components/Navbar/Navbar";
 import EntriesPage from "./components/EntryManager/EntriesPage";
 import HomePage from "./components/Dashboard/HomePage";
 import store from "./reducers/store.js";
@@ -14,6 +15,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <div id="app-page-container">
+            <Navbar />
             <Routes>
               <Route path="/" element={<HomePage/>}/>
               <Route path="/auth" element={<Auth/>}/>

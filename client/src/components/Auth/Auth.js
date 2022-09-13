@@ -8,7 +8,7 @@ import { signIn, signUp, googleAccountHandling } from "../../actions/auth.js";
 
 export default function Auth () {
   const initialState = { signupEmail: "", signupPassword: "", confirmPassword: "",
-                        loginEmail: "", loginPassword: "", response: "" };
+                          loginEmail: "", loginPassword: "", response: "" };
   const [isSignedUp, setIsSignedUp] = useState(true);
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState(initialState);
@@ -27,6 +27,10 @@ export default function Auth () {
   function handleChange (e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     signupValidation(e.target.name, e.target.value);
+
+    if (errors.response.length > 0) {
+      setErrors({ ...errors, response: "" }); // Reset response error once an input field has been changed
+    }
   }
 
   async function handleSubmit (e) {
@@ -35,7 +39,6 @@ export default function Auth () {
 
     if (isSignedUp) {
       let loginRequest = await dispatch(signIn(formData, navigate));
-      console.log(loginRequest);
 
       if (loginRequest.response) {
         setErrors({ ...errors, response: loginRequest.response.data.message });

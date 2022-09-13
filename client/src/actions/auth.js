@@ -2,8 +2,6 @@ import { instance } from "../apis/axios.js";
 
 export const signIn = (formData, navigation) => async (dispatch) => {
   try {
-    console.log("Dispatching sign in: ", formData);
-
     const { data } = await instance.post("/user/sign-in", formData);
     dispatch({ type: "AUTH", data });
 

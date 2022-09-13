@@ -21,9 +21,6 @@ const Form = (props) => (
                 id="loginEmail"
                 className="auth-form-input"
               />
-              {
-                props.errors.loginEmail && <h3 className="form-error-message">{props.errors.loginEmail}</h3>
-              }
             </div>
             <div className="auth-form-field">
               <input type="password"
@@ -34,11 +31,11 @@ const Form = (props) => (
                 id="loginPassword"
                 className="auth-form-input"
               />
-              {
-                props.errors.loginPassword && <h3 className="form-error-message">{props.errors.loginPassword}</h3>
-              }
               </div>
             </div>
+            {
+              props.errors.response.length > 0 && <h3 className="form-error-message">{props.errors.response}</h3>
+            }
             <div className="form-button-container">
               <button type="submit" id="loginButton" className="auth-form-button"> Log In </button>
             </div>
@@ -62,9 +59,6 @@ const Form = (props) => (
               placeholder="New e-mail"
               className="auth-form-input"
             />
-            {
-              props.errors.signupEmail && <h3 className="form-error-message">{props.errors.signupEmail}</h3>
-            }
           </div>
           <div className="auth-form-field">
             <input type="password"
@@ -76,9 +70,6 @@ const Form = (props) => (
               ref={props.signupPasswordRef}
               className="auth-form-input"
             />
-            {
-              props.errors.signupPassword && <h3 className="form-error-message">{props.errors.signupPassword}</h3>
-            }
           </div>
           <div className="auth-form-field">
             <input type="password"
@@ -89,10 +80,15 @@ const Form = (props) => (
               id="signupConfirmPassword"
               className="auth-form-input"
             />
-            {
-              props.errors.confirmPassword && <h3 className="form-error-message">{props.errors.confirmPassword}</h3>
-            }
           </div>
+          {
+            props.errors.response.length > 0 && <h3 className="form-error-message">{props.errors.response}</h3> ||
+            (
+              props.errors.confirmPassword && <h3 className="form-error-message">{props.errors.confirmPassword}</h3> ||
+              props.errors.signupPassword && <h3 className="form-error-message">{props.errors.signupPassword}</h3> ||
+              props.errors.signupEmail && <h3 className="form-error-message">{props.errors.signupEmail}</h3>
+            )
+          }
           <div className="form-button-container">
             <button type="submit" name="submitQuery" className="auth-form-button"> Submit </button>
           </div>
@@ -102,9 +98,6 @@ const Form = (props) => (
             <button type="button" onClick={props.switchFormType} className="auth-form-button"> Sign in </button>
           </div>
         </div>
-      }
-      {
-        props.errors.response && <h3 className="form-error-message">{props.errors.response}</h3>
       }
     </form>
   </div>
