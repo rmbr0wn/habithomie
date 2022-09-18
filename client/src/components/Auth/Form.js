@@ -82,11 +82,11 @@ const Form = (props) => (
             />
           </div>
           {
-            props.errors.response.length > 0 && <h3 className="form-error-message">{props.errors.response}</h3> ||
+            (props.errors.response.length > 0 && <h3 className="form-error-message">{props.errors.response}</h3>) ||
             (
-              props.errors.confirmPassword && <h3 className="form-error-message">{props.errors.confirmPassword}</h3> ||
-              props.errors.signupPassword && <h3 className="form-error-message">{props.errors.signupPassword}</h3> ||
-              props.errors.signupEmail && <h3 className="form-error-message">{props.errors.signupEmail}</h3>
+              (props.errors.confirmPassword && <h3 className="form-error-message">{props.errors.confirmPassword}</h3>) ||
+              (props.errors.signupPassword && <h3 className="form-error-message">{props.errors.signupPassword}</h3>) ||
+              (props.errors.signupEmail && <h3 className="form-error-message">{props.errors.signupEmail}</h3>)
             )
           }
           <div className="form-button-container">

@@ -40,7 +40,9 @@ export const signUp = async (req, res) => {
 		let query = `SELECT * FROM users WHERE email = $1`;
 		let emailCheck = await pool.query(query, [signupEmail]);
 
-		if (emailCheck.rowCount > 0) return res.status(409).json({ message: "That email has already been taken." });
+		if (emailCheck.rowCount > 0) {
+			return res.status(409).json({ message: "That email has already been taken." });
+		}
 
 		query = `
 			INSERT INTO users (email, password)
