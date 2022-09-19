@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createActivity, getActivities, changeActivityName, deleteActivity } from "../../actions/activities.js";
+import { createActivity, getActivities, changeActivityName, deleteActivity } from "../../../actions/activities.js";
 import ActivityInput from "./ActivityInput.js";
 
 export default function ActivityManager (props) {
@@ -16,13 +16,17 @@ export default function ActivityManager (props) {
   const [successMessage, setSuccessMessage] = useState();
   const dispatch = useDispatch();
 
-  // Send db fetch only if activties not already in redux store
+  // Send db fetch only if activities not already in redux store
   useEffect(() => {
     if (storedUser.authData && !storedActivities.activitiesData) {
       let userId = storedUser.authData.result.id;
       let fetchActivities = dispatch(getActivities(userId));
     }
   }, []);
+
+  // useEffect(() => {
+  //   console.log(storedActivities);
+  // }, [storedActivities]);
 
   async function submitNewActivity (e) {
     e.preventDefault();

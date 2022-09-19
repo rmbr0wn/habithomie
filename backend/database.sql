@@ -17,3 +17,17 @@ CREATE TABLE activities (
       REFERENCES users(user_id)
       ON DELETE CASCADE
 );
+
+CREATE TABLE times (
+  time_id INT GENERATED ALWAYS AS IDENTITY,
+  user_id INT,
+  activity_id INT,
+  time_value INT,
+  entry_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  PRIMARY KEY(time_id),
+  FOREIGN KEY(activity_id) REFERENCES activities(activity_id),
+  CONSTRAINT fk_user
+    FOREIGN KEY(user_id)
+      REFERENCES users(user_id)
+      ON DELETE CASCADE
+);

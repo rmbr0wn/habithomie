@@ -3,6 +3,7 @@ import { instance } from "../apis/axios.js";
 export const createActivity = (payload) => async (dispatch) => {
   try {
     const { data } = await instance.post("/activities/create-activity", payload);
+
     dispatch({ type: "CREATE_ACTIVITY", data });
 
     return data;
