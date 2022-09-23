@@ -4,6 +4,12 @@ const timesReducer = (state = { timesData: null }, action) => {
       return { ...state, timesData: [...state.timesData, action.data.result] };
     case "GET_TIMES":
       return { ...state, timesData: action.data.result };
+    case "UPDATE_ENTRY":
+      return { ...state, timesData: state.timesData.map(
+        (time) => (time.time_id === action.data.result.time_id ? action.data.result : time)) };
+    case "DELETE_ENTRY":
+      return { ...state, timesData: state.timesData.filter(
+        (time) => time.time_id !== action.data.result.time_id) };
     case "LOGOUT":
       localStorage.clear();
       return { ...state, timesData: null };

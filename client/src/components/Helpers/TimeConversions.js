@@ -1,18 +1,33 @@
 export function minutesToSeconds (minutes) {
-  return parseInt(minutes) * 60;
+  if (minutes > 0) {
+    return parseInt(minutes) * 60;
+  } else {
+    return 0;
+  }
 }
 
 export function hoursToSeconds (hours) {
-  return parseInt(hours) * 3600;
+  if (hours > 0) {
+    return parseInt(hours) * 3600;
+  } else {
+    return 0;
+  }
 }
 
 export function convertEntryToSeconds (hours, minutes) {
   return hoursToSeconds(hours) + minutesToSeconds(minutes);
 }
 
-// TODO: seconds to minutes & hours
+export function convertSecondsToMinutes (seconds) {
+  return Math.floor((seconds/60)%60);
+}
+
+export function convertSecondsToHours (seconds) {
+  return Math.floor(seconds/3600);
+}
+
 export function convertSecondsToMinutesAndHours (seconds) {
-  const minutes = Math.floor((seconds/60)%60);
-  const hours = Math.floor(seconds/3600);
+  const minutes = convertSecondsToMinutes(seconds);
+  const hours = convertSecondsToHours(seconds);
   return [hours, minutes];
 }

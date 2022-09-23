@@ -8,6 +8,7 @@ export const createTimeEntry = (payload) => async (dispatch) => {
 
     return data;
   } catch (error) {
+    console.log(error);
     return error;
   }
 };
@@ -24,3 +25,27 @@ export const getTimeEntries = (userId) => async (dispatch) => {
     return error;
   }
 };
+
+export const updateTimeEntry = (payload) => async (dispatch) => {
+  try {
+    const { data } = await instance.put("/entries/update-entry", payload);
+
+    dispatch({ type: "UPDATE_ENTRY", data });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteTimeEntry = (timeId) => async (dispatch) => {
+  try {
+    const { data } = await instance.delete(`/entries/delete-entry/${timeId}`);
+
+    dispatch({ type: "DELETE_ENTRY", data });
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+}

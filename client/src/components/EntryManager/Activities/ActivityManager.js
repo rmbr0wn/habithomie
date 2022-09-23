@@ -24,10 +24,6 @@ export default function ActivityManager (props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(storedActivities);
-  // }, [storedActivities]);
-
   async function submitNewActivity (e) {
     e.preventDefault();
     setError("");

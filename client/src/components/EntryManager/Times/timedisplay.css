@@ -1,0 +1,27 @@
+#time-display-table-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#time-display-table-container > div{
+  padding-right: 1em;
+}
+
+#time-table-buttons-container {
+  padding-top: 3em;
+}
+
+.time-table-button {
+  margin-top: 1em;
+}
+
+#time-table-time-entry-container {
+  display: flex;
+  flex-direction: row;
+  width: 10%;
+}
+
+.edit-entry-time {
+  margin: auto;
+  width: 3em;
+}

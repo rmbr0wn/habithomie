@@ -25,9 +25,6 @@ function authentication (req, res, next) {
         req.userId = decodedData?.sub;
     }
 
-    // console.log("Token: ", token);
-    // console.log("Decoded: ", decodedData);
-
     next();
   } catch (error) {
     return res.status(403).send(error);
