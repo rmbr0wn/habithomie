@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { createTimeEntry } from "../../../actions/times.js";
 
@@ -9,6 +10,7 @@ export default function Stopwatch () {
   const [timerOn, setTimerOn] = useState(false);
   const [activityType, setActivityType] = useState(null);
   const [serverResponse, setServerResponse] = useState("");
+  const [activitiesList, setActivitiesList] = useState(storedActivities.activitiesData);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -83,14 +85,18 @@ export default function Stopwatch () {
         }
       </div>
       <div id="stopwatch-activity-dropdown-container">
-        <select defaultValue="default" name="activityId" id="stopwatch-activity-dropdown" onChange={getSelectedActivity}>
-          <option disabled value="default"> -- Select an activity -- </option>
-          {storedActivities.activitiesData.map((activity, index) => (
-            <option key={index} value={activity.activity_id}>
-            {activity.activity_name}
-            </option>
-          ))}
-        </select>
+        { storedActivities.activitiesData ?
+            <select defaultValue="default" name="activityId" id="stopwatch-activity-dropdown" onChange={getSelectedActivity}>
+            <option disabled value="default"> -- Select an activity -- </option>
+            {storedActivities.activitiesData.map((activity, index) => (
+              <option key={index} value={activity.activity_id}>
+              {activity.activity_name}
+              </option>
+            ))}
+            </select>
+          :
+            null
+        }
       </div>
     </div>
   );

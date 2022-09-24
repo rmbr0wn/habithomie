@@ -31,3 +31,7 @@ export function convertSecondsToMinutesAndHours (seconds) {
   const hours = convertSecondsToHours(seconds);
   return [hours, minutes];
 }
+
+export function convertSecondsToDecimalHours (seconds) {
+  return seconds/3600;
+}
