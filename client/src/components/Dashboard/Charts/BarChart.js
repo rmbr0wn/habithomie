@@ -8,8 +8,9 @@ export default function BarChart ({chartData}) {
   return (
     <Bar
       data={chartData}
-      height={200}
-      width={200}
+      height={400}
+      width={600}
+      options={{ maintainAspectRatio: false}}
     />
   );
 }

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 import BarChart from "./BarChart.js";
-import { convertSecondsToDecimalHours } from "../../Helpers/TimeConversions.js"    
+import { convertSecondsToDecimalHours } from "../../Helpers/TimeConversions.js"
 
 export default function ChartManager (props) {
   const [chartData, setChartData] = useState({});
   const [viewingChart, setViewingChart] = useState(false);
 
   useEffect(() => {
-    populateChart();
+    if (props.activities && props.times) {
+      populateChart();
+    }
   }, [props.activities, props.times])
 
   function combineTimeValues (times) {

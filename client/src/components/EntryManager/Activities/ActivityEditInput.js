@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ActivityInput = (props) => (
+const ActivityEditInput = (props) => (
   <div id="activity-input-wrapper">
     { props.editingPayload.id === props.id && props.editingPayload.beingEdited === true ?
       <div id="activity-input-editing-container">
         <form onSubmit={props.submitNameChange} id="activity-input-form" activityid={props.id}>
           <div id="activity-input-container">
-            <input type="text" id="edit-activity-name" name="editActivityInput" defaultValue={props.name} onChange={props.handleNameChange}/>
+            <input type="text" id="edit-activity-name" name="activityEditInput" defaultValue={props.name} onChange={props.handleNameChange}/>
             <input type="submit" value="Save changes" className="activity-form-button"/>
             <button type="button" className="activity-form-button" activityid={props.id} onClick={props.deleteActivityHandler}> Delete </button>
             <button type="button" className="activity-form-button" activityid={props.id} onClick={props.toggleEditing}> Cancel </button>
@@ -24,7 +24,7 @@ const ActivityInput = (props) => (
   </div>
 );
 
-ActivityInput.propTypes = {
+ActivityEditInput.propTypes = {
   handleNameChange: PropTypes.func,
   submitNameChange: PropTypes.func,
   deleteActivityHandler: PropTypes.func,
@@ -35,4 +35,4 @@ ActivityInput.propTypes = {
   error: PropTypes.string
 };
 
-export default ActivityInput;
+export default ActivityEditInput;
