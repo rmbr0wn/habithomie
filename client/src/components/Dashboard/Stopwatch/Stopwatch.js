@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { createTimeEntry } from "../../../actions/times.js";
+import StopwatchDisplay from "./StopwatchDisplay.js";
 
 export default function Stopwatch () {
   const storedUser = useSelector((state) => state.authReducer);
@@ -59,45 +60,15 @@ export default function Stopwatch () {
   }
 
   return (
-    <div id="stopwatch-container-wrapper">
-      <h3> Stopwatch </h3>
-      { serverResponse && <h3 className="response-message-header">{serverResponse}</h3> }
-      <div id="stopwatch-time-container">
-        <span> {("0" + Math.floor(((time / 60) / 60) % 60)).slice(-2)}:</span>
-        <span> {("0" + Math.floor((time / 60) % 60)).slice(-2)}:</span>
-        <span> {("0" + (time % 60)).slice(-2)}</span>
-      </div>
-      <div id="stopwatch-button-wrapper">
-        { !timerOn && time === 0 &&
-            <button onClick={switchTimerState}> Start </button>
-        }
-        { !timerOn && time > 0 &&
-            <div>
-              <button onClick={switchTimerState}> Resume </button>
-              <button onClick={saveAndSubmit}> Save Time Entry </button>
-            </div>
-        }
-        { timerOn &&
-            <button onClick={switchTimerState}> Stop </button>
-        }
-        { time > 0 &&
-            <button onClick={resetTimer}> Reset </button>
-        }
-      </div>
-      <div id="stopwatch-activity-dropdown-container">
-        { storedActivities.activitiesData ?
-            <select defaultValue="default" name="activityId" id="stopwatch-activity-dropdown" onChange={getSelectedActivity}>
-            <option disabled value="default"> -- Select an activity -- </option>
-            {storedActivities.activitiesData.map((activity, index) => (
-              <option key={index} value={activity.activity_id}>
-              {activity.activity_name}
-              </option>
-            ))}
-            </select>
-          :
-            null
-        }
-      </div>
-    </div>
+    <StopwatchDisplay
+      serverResponse={serverResponse}
+      timerOn={timerOn}
+      time={time}
+      switchTimerState={switchTimerState}
+      saveAndSubmit={saveAndSubmit}
+      resetTimer={resetTimer}
+      activitiesData={storedActivities.activitiesData}
+      getSelectedActivity={getSelectedActivity}
+    />
   );
 }

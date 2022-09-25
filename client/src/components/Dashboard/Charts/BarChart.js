@@ -13,14 +13,3 @@ export default function BarChart ({chartData}) {
     />
   );
 }
-
-// Labels would probably be the activity types (though could be many things) -- I think this is X
-  // --> activitiesData.map((activity) => activity.name)
-
-// Datasets.label would be # hours or something -- I think this is Y --> "Hours spent"
-  // This would probably need to be dynamic in the future --> hours spent PER week, PER day, etc.
-
-// Datasets.data would be the value ~ timeData.map((time) => formattedInHourDecimalForm(time.value))
-
-
-// options not not required
