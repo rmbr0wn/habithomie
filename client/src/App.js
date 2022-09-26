@@ -5,7 +5,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import Auth from "./components/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
-import EntriesPage from "./components/EntryManager/EntriesPage";
+import EntriesPage from "./components/EntryManagement/EntriesPage";
 import HomePage from "./components/Dashboard/HomePage";
 import store from "./reducers/store.js";
 

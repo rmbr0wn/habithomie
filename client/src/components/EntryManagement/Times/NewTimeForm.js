@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AddTimeForm = (props) => (
+const NewTimeForm = (props) => (
   <div id="time-creation-wrapper">
-    { props.createFormVisible ?
+    { props.timeEntryBeingCreated ?
       <div id="time-creation-form-container">
         <form onSubmit={props.submitNewTime} id="time-creation-form">
           <label> Hours:
@@ -38,13 +38,13 @@ const AddTimeForm = (props) => (
   </div>
 );
 
-AddTimeForm.propTypes = {
+NewTimeForm.propTypes = {
   handleFormChange: PropTypes.func,
   submitNewTime: PropTypes.func,
   activities: PropTypes.array,
-  createFormVisible: PropTypes.bool,
+  timeEntryBeingCreated: PropTypes.bool,
   toggleCreateEntry: PropTypes.func,
   errors: PropTypes.object
 };
 
-export default AddTimeForm;
+export default NewTimeForm;

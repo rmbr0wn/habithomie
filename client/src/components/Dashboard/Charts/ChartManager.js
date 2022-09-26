@@ -11,13 +11,14 @@ export default function ChartManager (props) {
     if (props.activities && props.times) {
       populateChart();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.activities, props.times])
 
   function combineTimeValues (times) {
     let timeMap = new Map();
 
     for (let i = 0; i < times.length; i++) {
-      timeMap.set(times[i].activity_id, timeMap.get(times[i].activity_id) + times[i].time_value || 1 )
+      timeMap.set(times[i].activity_id, timeMap.get(times[i].activity_id) + times[i].time_value || times[i].time_value );
     }
     return timeMap;
   }

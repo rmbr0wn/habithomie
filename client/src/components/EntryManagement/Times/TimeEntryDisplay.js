@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { convertSecondsToMinutesAndHours, convertSecondsToMinutes, convertSecondsToHours } from "../../Helpers/TimeConversions.js"
 import "./timedisplay.css";
 
-const TimeDisplay = (props) => (
+const TimeEntryDisplay = (props) => (
   <div id="time-display-wrapper">
-    { props.beingViewed ?
+    { props.timeEntriesBeingViewed ?
         <div id="time-display-table-container">
           <div>
             <button onClick={props.toggleViewing}> Cancel Viewing </button>
@@ -99,11 +99,11 @@ const TimeDisplay = (props) => (
                 {props.editingPayload.beingEdited && props.editingPayload.time_id === time.time_id ?
                     <div>
                       <button className="time-table-button" onClick={props.submitUpdatedEntry}> Save Changes </button>
-                    <button key={"cancelBtn" + index} timeid={time.time_id} className="time-table-button" onClick={props.toggleEditing}> Cancel </button>
+                    <button key={"cancelBtn" + index} timeid={time.time_id} className="time-table-button" onClick={props.toggleEntryAndInitialize}> Cancel </button>
                     </div>
                   :
                     <div>
-                      <button key={"editBtn" + index} timeid={time.time_id} className="time-table-button" onClick={props.toggleEditing}> Edit </button>
+                      <button key={"editBtn" + index} timeid={time.time_id} className="time-table-button" onClick={props.toggleEntryAndInitialize}> Edit </button>
                       <button key={"deleteBtn" + index} timeid={time.time_id} className="time-table-button" onClick={props.deleteEntryHandler}> Delete </button>
                     </div>
                 }
@@ -134,22 +134,21 @@ function getActivityName (activities, activityId) {
   }
 }
 
-
 function formatDate (date) {
   return date.slice(0, 10);
 }
 
-TimeDisplay.propTypes = {
+TimeEntryDisplay.propTypes = {
   times: PropTypes.array,
   activities: PropTypes.array,
-  beingViewed: PropTypes.bool,
+  timeEntriesBeingViewed: PropTypes.bool,
   toggleViewing: PropTypes.func,
   editingPayload: PropTypes.object,
-  toggleEditing: PropTypes.func,
+  toggleEntryAndInitialize: PropTypes.func,
   handleEditFields: PropTypes.func,
   submitUpdatedEntry: PropTypes.func,
   deleteEntryHandler: PropTypes.func,
   errors: PropTypes.object
 };
 
-export default TimeDisplay;
+export default TimeEntryDisplay;
