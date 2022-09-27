@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
-
 import NavDisplay from "./NavDisplay.js";
-// import store from "../../reducers/store.js";
 
 export default function Navbar () {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("account")));
+  const siteLogo = "./HabitHomieLogo.png";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,6 +34,7 @@ export default function Navbar () {
       }
     }
     setUser(JSON.parse(localStorage.getItem("account")));
+    // eslint-disable-next-line
   }, [user?.token, location]);
 
   return (
@@ -43,6 +43,7 @@ export default function Navbar () {
         user={user}
         logOut={logOut}
         logIn={logIn}
+        siteLogo={siteLogo}
       />
     </div>
   );

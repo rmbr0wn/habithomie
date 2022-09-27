@@ -1,6 +1,7 @@
 #time-display-table-container {
   display: flex;
   flex-direction: row;
+  text-align: center;
 }
 
 #time-display-table-container > div{
@@ -18,10 +19,25 @@
 #time-table-time-entry-container {
   display: flex;
   flex-direction: row;
-  width: 10%;
+  width: 100%;
+  justify-content: center;
 }
 
 .edit-entry-time {
-  margin: auto;
-  width: 3em;
+  height: fit-content;
+  width: 25%;
+}
+
+.time-colon {
+  margin: 0;
+}
+
+#time-display-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.time-display-button {
+  display: flex;
+  justify-content: center;
 }

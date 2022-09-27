@@ -1,0 +1,21 @@
+#time-manager-panel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#creator-and-editor-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.server-response-container {
+  display: flex;
+  justify-content: center;
+}
+
+.response-message-header {
+  margin-top: 0;
+}

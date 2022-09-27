@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import BarChart from "./BarChart.js";
 import { convertSecondsToDecimalHours } from "../../Helpers/TimeConversions.js"
+import "./chartmanager.css";
 
 export default function ChartManager (props) {
   const [chartData, setChartData] = useState({});
@@ -42,7 +42,7 @@ export default function ChartManager (props) {
       labels: entryData.map((entry) => entry.activityName),
       datasets: [
         {
-          label: "Hours spent",                             // TODO: make this dynamic for future
+          label: "Hours spent",      // TODO: make this dynamic in the future
           data: entryData.map((entry) => convertSecondsToDecimalHours(entry.timeValue)),
           borderColor: "black",
           borderWidth: 2,
@@ -63,10 +63,15 @@ export default function ChartManager (props) {
   }
 
   return (
-    <div>
-      <button onClick={toggleChartViewing}> {viewingChart ? "Cancel Chart Viewing" : "View Chart"} </button>
+    <div id="chart-manager-wrapper">
+      <div id="chart-view-button-container">
+        <button onClick={toggleChartViewing}> {viewingChart ? "Cancel Chart Viewing" : "View Chart"} </button>
+      </div>
       { viewingChart ?
-        <div>
+        <div id="chart-view-container">
+          <div id="chart-header-container">
+            <h2> Hours spent per activity type </h2>
+          </div>
           <BarChart chartData={chartData} />
         </div>
         :

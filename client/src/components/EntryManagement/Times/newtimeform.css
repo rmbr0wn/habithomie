@@ -1,0 +1,39 @@
+#time-creation-form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#time-creation-form {
+  display: table;
+  margin: auto;
+  }
+
+.creation-form-field-container {
+  display: table-row;
+}
+
+.creation-field-label {
+  display: table-cell;
+  text-align: left;
+}
+
+.create-entry-input {
+  display: table-cell;
+  width: 100%;
+  text-align: center;
+}
+
+#create-entry-activity-dropdown {
+  display: table-cell;
+  width: 100%;
+}
+
+#creation-form-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+#creation-form-error-container {
+  display: flex;
+  justify-content: center;
+}

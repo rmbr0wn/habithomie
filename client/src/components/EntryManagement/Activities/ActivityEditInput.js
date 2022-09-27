@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./activityeditinput.css";
 
 const ActivityEditInput = (props) => (
   <div id="activity-input-wrapper">
@@ -8,17 +9,23 @@ const ActivityEditInput = (props) => (
         <form onSubmit={props.submitNameChange} id="activity-input-form" activityid={props.id}>
           <div id="activity-input-container">
             <input type="text" id="edit-activity-name" name="activityEditInput" defaultValue={props.name} onChange={props.handleNameChange}/>
-            <input type="submit" value="Save changes" className="activity-form-button"/>
-            <button type="button" className="activity-form-button" activityid={props.id} onClick={props.deleteActivityHandler}> Delete </button>
-            <button type="button" className="activity-form-button" activityid={props.id} onClick={props.toggleEditing}> Cancel </button>
+            <div id="activity-input-button-container">
+              <input type="submit" value="Save changes" className="activity-form-button"/>
+              <button type="button" className="activity-form-button" activityid={props.id} onClick={props.deleteActivityHandler}> Delete </button>
+              <button type="button" className="activity-form-button" activityid={props.id} onClick={props.toggleEditing}> Cancel </button>
+            </div>
           </div>
         </form>
         { props.error && <h3 className="form-error-message">{props.error}</h3> }
       </div>
       :
-      <div>
-        <p> {props.name} </p>
-        <button type="button" className="activity-form-button" activityid={props.id} onClick={props.toggleEditing}> Edit </button>
+      <div id="activity-display-wrapper">
+        <div id="activity-name-container">
+          <p className="activity-name"> {props.name} </p>
+        </div>
+        <div id="activity-button-container">
+          <button type="button" className="activity-form-button" activityid={props.id} onClick={props.toggleEditing}> Edit </button>
+        </div>
       </div>
     }
   </div>

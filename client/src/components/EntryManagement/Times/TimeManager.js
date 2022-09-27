@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import TimeCreator from "./TimeCreator.js";
 import TimeEditor from "./TimeEditor.js";
 import { getTimeEntries } from "../../../actions/times.js";
+import "./timemanager.css";
 
 const initialErrorState = { editEntryHour: "", editEntryMinute: "", createHour: "", createMinute: "", activityName: "" };
 
@@ -22,8 +22,9 @@ export default function TimeManager (props) {
   useEffect(() => {
     if (storedUser.authData && !storedTimes.timesData) {
       let userId = storedUser.authData.result.id;
-      let fetchTimes = dispatch(getTimeEntries(userId));
+      dispatch(getTimeEntries(userId));
     }
+    // eslint-disable-next-line
   }, []);
 
   function toggleCreateEntry () {
@@ -74,8 +75,6 @@ export default function TimeManager (props) {
         }
         break;
 
-      case "activityId":
-
       default:
         break;
     }
@@ -83,36 +82,43 @@ export default function TimeManager (props) {
 
   return (
     <div id="time-manager-panel-wrapper">
-      <h3> Time Entries </h3>
-      <TimeCreator
-        errors={errors}
-        initialErrorState={initialErrorState}
-        userId={storedUser.authData.result.id}
-        timeEntryBeingCreated={timeEntryBeingCreated}
-        setTimeEntryBeingCreated={setTimeEntryBeingCreated}
-        setErrors={setErrors}
-        setServerResponse={setServerResponse}
-        entryValidation={entryValidation}
-        activities={storedActivities.activitiesData}
-        toggleCreateEntry={toggleCreateEntry}
-      />
-      { serverResponse && <h3 className="response-message-header">{serverResponse}</h3> }
-      <TimeEditor
-        timesData={storedTimes.timesData}
-        activitiesData={storedActivities.activitiesData}
-        entryValidation={entryValidation}
-        setServerResponse={setServerResponse}
-        toggleEntryEditing={toggleEntryEditing}
-        toggleViewing={toggleViewing}
-        errors={errors}
-        setErrors={setErrors}
-        initialErrorState={initialErrorState}
-        userId={storedUser.authData.result.id}
-        editingPayload={editingPayload}
-        setEditingPayload={setEditingPayload}
-        timeEntryBeingCreated={timeEntryBeingCreated}
-        timeEntriesBeingViewed={timeEntriesBeingViewed}
-      />
+      <div id="creator-and-editor-container">
+        <div className="entries-header-container">
+          <h3> Time Entries </h3>
+        </div>
+        <div className="server-response-container">
+          { serverResponse && <h3 className="response-message-header">{serverResponse}</h3> }
+        </div>
+        <TimeCreator
+          errors={errors}
+          initialErrorState={initialErrorState}
+          userId={storedUser.authData.result.id}
+          timeEntriesBeingViewed={timeEntriesBeingViewed}
+          timeEntryBeingCreated={timeEntryBeingCreated}
+          setTimeEntryBeingCreated={setTimeEntryBeingCreated}
+          setErrors={setErrors}
+          setServerResponse={setServerResponse}
+          entryValidation={entryValidation}
+          activities={storedActivities.activitiesData}
+          toggleCreateEntry={toggleCreateEntry}
+        />
+        <TimeEditor
+          timesData={storedTimes.timesData}
+          activitiesData={storedActivities.activitiesData}
+          entryValidation={entryValidation}
+          setServerResponse={setServerResponse}
+          toggleEntryEditing={toggleEntryEditing}
+          toggleViewing={toggleViewing}
+          errors={errors}
+          setErrors={setErrors}
+          initialErrorState={initialErrorState}
+          userId={storedUser.authData.result.id}
+          editingPayload={editingPayload}
+          setEditingPayload={setEditingPayload}
+          timeEntryBeingCreated={timeEntryBeingCreated}
+          timeEntriesBeingViewed={timeEntriesBeingViewed}
+        />
+      </div>
     </div>
   );
 }

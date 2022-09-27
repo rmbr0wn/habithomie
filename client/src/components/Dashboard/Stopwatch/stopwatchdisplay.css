@@ -1,0 +1,32 @@
+#stopwatch-container-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.stopwatch-sub-heading, #stopwatch-time-container, #stopwatch-activity-dropdown-container {
+  text-align: center;
+}
+
+#stopwatch-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+#save-stopwatch-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.stopwatch-button {
+  width: fit-content;
+}
+
+#stopwatch-sub-heading-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

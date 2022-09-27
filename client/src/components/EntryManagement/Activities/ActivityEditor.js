@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
 import { changeActivityName, deleteActivity } from "../../../actions/activities.js";
 import ActivityEditInput from "./ActivityEditInput";
 
@@ -75,7 +74,7 @@ export default function ActivityEditor (props) {
   }
 
   return (
-    <div id="activity-editor-wrapperr">
+    <div id="activity-editor-wrapper">
       { props.activitiesBeingViewed ?
           <div id="activity-viewing-container">
             <div>

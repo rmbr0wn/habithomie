@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { createTimeEntry } from "../../../actions/times.js";
 import StopwatchDisplay from "./StopwatchDisplay.js";
@@ -11,7 +10,6 @@ export default function Stopwatch () {
   const [timerOn, setTimerOn] = useState(false);
   const [activityType, setActivityType] = useState(null);
   const [serverResponse, setServerResponse] = useState("");
-  const [activitiesList, setActivitiesList] = useState(storedActivities.activitiesData);
   const dispatch = useDispatch();
 
   useEffect(() => {

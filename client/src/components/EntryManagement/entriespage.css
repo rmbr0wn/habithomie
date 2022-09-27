@@ -1,0 +1,16 @@
+#entries-page-container-wrapper, .entries-header-container  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.entries-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#time-activity-managers-container {
+  display: flex;
+  flex-direction: row;
+}

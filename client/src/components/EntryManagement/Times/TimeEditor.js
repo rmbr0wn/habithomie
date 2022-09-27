@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
 import TimeEntryDisplay from "./TimeEntryDisplay.js";
 import { updateTimeEntry, deleteTimeEntry } from "../../../actions/times.js";
 import { convertEntryToSeconds, convertSecondsToMinutesAndHours } from "../../Helpers/TimeConversions.js";
-
-const initialEditState = { editEntryHour: -1, editEntryMinute: -1, editActivity: -1, editDate: (new Date(0,0)).toLocaleDateString() };
 
 export default function TimeEditor (props) {
   const [updatedEntryPayload, setUpdatedEntryPayload] = useState({});   // To TimeEditor
@@ -87,17 +84,24 @@ export default function TimeEditor (props) {
   return (
     <div id="time-editor-wrapper">
       { !props.timeEntryBeingCreated &&
-          <TimeEntryDisplay
-            times={props.timesData}
-            activities={props.activitiesData}
-            timeEntriesBeingViewed={props.timeEntriesBeingViewed}
-            toggleViewing={props.toggleViewing}
-            editingPayload={props.editingPayload}
-            toggleEntryAndInitialize={toggleEntryAndInitialize}
-            handleEditFields={handleEditFields}
-            submitUpdatedEntry={submitUpdatedEntry}
-            deleteEntryHandler={deleteEntryHandler}
-            errors={props.errors} />
+          <div>
+            { props.timeEntriesBeingViewed &&
+              <div className="time-display-button">
+                <button onClick={props.toggleViewing}> Cancel Viewing </button>
+              </div>
+            }
+            <TimeEntryDisplay
+              times={props.timesData}
+              activities={props.activitiesData}
+              timeEntriesBeingViewed={props.timeEntriesBeingViewed}
+              toggleViewing={props.toggleViewing}
+              editingPayload={props.editingPayload}
+              toggleEntryAndInitialize={toggleEntryAndInitialize}
+              handleEditFields={handleEditFields}
+              submitUpdatedEntry={submitUpdatedEntry}
+              deleteEntryHandler={deleteEntryHandler}
+              errors={props.errors} />
+          </div>
       }
     </div>
   );

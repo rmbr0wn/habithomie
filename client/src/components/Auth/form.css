@@ -1,0 +1,86 @@
+/* Copied from my vocabulary app. */
+
+/* The Google Login button has some unnecessary & inconvenient offsets that we have to fix here. */
+#google-login-container > div > div > div:first-of-type  {
+  display: none;
+}
+
+.auth-form-container {
+  text-align: center;
+  padding-top: 3em;
+}
+
+.auth-form-button {
+  text-align: center;
+  overflow: hidden;
+  padding: 0.5em;
+}
+
+.auth-form-field {
+  display: table-row;
+  margin-bottom: 0.5em;
+}
+
+.auth-form {
+  display: table;
+  margin: auto;
+  border: 5px solid;
+  border-radius: 8px;
+  padding: 1.5em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+  background-color: #211C20;
+}
+
+.auth-form-field > label {
+  display: table-cell;
+  text-align: right;
+  padding-right: 0.1em;
+}
+
+.auth-form-input {
+  display: table-cell;
+  margin-bottom: 0.5em;
+  background-color: #262B31;
+  border-color: #262B31;
+  color: #29CCBF;
+  padding: 0.5em;
+}
+
+.auth-form-input:focus {
+  outline: none !important;
+  border: 1px solid;
+  box-shadow: 0 0 10px #29CCBF;
+}
+
+.horizontal-rounded-divider {
+  width: 75%;
+  color: #7D523B;
+  border: 1px solid;
+  color: #98B06F;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.existing-account-text {
+  margin-top: 0.2em;
+  margin-bottom: 0.75em;
+  color: #98B06F;
+}
+
+.form-field-container {
+  margin-bottom: 0.5em;
+}
+
+.form-button-container {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.auth-form-h1 {
+  margin-top: 0;
+  color: #211C20;
+}
+
+.auth-form-label {
+  color: #98B06F;
+}

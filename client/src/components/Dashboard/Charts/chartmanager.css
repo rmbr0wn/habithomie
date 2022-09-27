@@ -1,0 +1,15 @@
+#chart-view-button-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1em;
+}
+
+#chart-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 30em;
+  margin-top: 3em;
+}

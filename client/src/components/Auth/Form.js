@@ -1,6 +1,7 @@
 import React from "react";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import PropTypes from "prop-types";
+import "./form.css";
 
 const Form = (props) => (
   <div className="auth-form-container">
@@ -40,14 +41,14 @@ const Form = (props) => (
               <button type="submit" id="loginButton" className="auth-form-button"> Log In </button>
             </div>
             <div className="form-button-container">
-              <GoogleLogin
-                onSuccess={props.googleSuccess}
-                onError={props.googleFailure}
-              />
+              <button type="button" onClick={props.switchFormType} className="auth-form-button"> Create New Account </button>
             </div>
-          <div className="form-button-container">
-            <button type="button" onClick={props.switchFormType} className="auth-form-button"> Create New Account </button>
-          </div>
+            <div id="google-login-container">
+              <GoogleLogin
+              onSuccess={props.googleSuccess}
+              onError={props.googleFailure}
+              id="google-login-button"/>
+            </div>
         </div>
         :
         <div className="form-container-sign-up">

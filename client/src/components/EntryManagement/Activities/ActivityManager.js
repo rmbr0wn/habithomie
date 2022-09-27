@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { getActivities, changeActivityName, deleteActivity } from "../../../actions/activities.js";
+import { getActivities } from "../../../actions/activities.js";
 import ActivityCreator from "./ActivityCreator.js";
 import ActivityEditor from "./ActivityEditor.js";
+import "./activitymanager.css";
 
 export default function ActivityManager (props) {
   const storedUser = useSelector((state) => state.authReducer);
@@ -19,8 +19,9 @@ export default function ActivityManager (props) {
   useEffect(() => {
     if (storedUser.authData && !storedActivities.activitiesData) {
       let userId = storedUser.authData.result.id;
-      let fetchActivities = dispatch(getActivities(userId));
+      dispatch(getActivities(userId));
     }
+    // eslint-disable-next-line
   }, []);
 
   function toggleCreate () {

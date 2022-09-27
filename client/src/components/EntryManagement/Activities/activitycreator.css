@@ -1,0 +1,14 @@
+#activity-creator-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.create-activity-button {
+  width: 30%;
+}
+
+#activity-creation-form {
+  display: table;
+  margin: auto;
+}

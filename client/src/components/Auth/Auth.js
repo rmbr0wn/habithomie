@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
 import Form from "./Form.js";
 import { signIn, signUp, googleAccountHandling } from "../../actions/auth.js";
 
@@ -94,7 +93,7 @@ export default function Auth () {
     let payload = { email: jwt_decode(response.credential).email };
 
     // Insert or retrieve google user from users DB
-    let googleRequest = await dispatch(googleAccountHandling(payload, navigate));
+    await dispatch(googleAccountHandling(payload, navigate));
   }
 
   async function googleFailure (error) {

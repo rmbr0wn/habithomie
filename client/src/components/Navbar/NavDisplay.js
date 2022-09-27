@@ -1,11 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "./navdisplay.css";
 
 const NavDisplay = (props) => (
   <nav id="nav-bar">
     <div className="nav-container">
       <ul className="nav-link-list">
+        <li className="nav-logo-li">
+          <img src={props.siteLogo} alt="0" className="nav-logo"/>
+        </li>
         <li className="nav-route-li">
           <Link to='/' className="nav-link nav-text-link">Home</Link>
         </li>

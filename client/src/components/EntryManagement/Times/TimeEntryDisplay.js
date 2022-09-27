@@ -1,16 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { convertSecondsToMinutesAndHours, convertSecondsToMinutes, convertSecondsToHours } from "../../Helpers/TimeConversions.js"
-import "./timedisplay.css";
+import "./timeentrydisplay.css";
 
 const TimeEntryDisplay = (props) => (
   <div id="time-display-wrapper">
     { props.timeEntriesBeingViewed ?
         <div id="time-display-table-container">
-          <div>
-            <button onClick={props.toggleViewing}> Cancel Viewing </button>
-          </div>
           <div id="time-table-times-wrapper">
             <h5> Time </h5>
             {props.times.map((time, index) => (
@@ -27,7 +23,7 @@ const TimeEntryDisplay = (props) => (
                           max="23"
                           key={"hour" + index}
                           onChange={props.handleEditFields} />
-                        <p key={"colon" + index}>:</p>
+                        <p key={"colon" + index} className="time-colon">:</p>
                         <input
                         type="number"
                         className="edit-entry-time"

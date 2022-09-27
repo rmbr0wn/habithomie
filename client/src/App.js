@@ -6,7 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Auth from "./components/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
 import EntriesPage from "./components/EntryManagement/EntriesPage";
-import HomePage from "./components/Dashboard/HomePage";
+import DashboardPage from "./components/Dashboard/DashboardPage";
 import store from "./reducers/store.js";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
           <div id="app-page-container">
             <Navbar />
             <Routes>
-              <Route path="/" element={<HomePage/>}/>
+              <Route path="/" element={<DashboardPage/>}/>
               <Route path="/auth" element={<Auth/>}/>
               <Route path="/entries" element={<EntriesPage/>}/>
             </Routes>
