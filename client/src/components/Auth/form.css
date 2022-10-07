@@ -5,6 +5,10 @@
   display: none;
 }
 
+#google-login-container {
+  margin-left: 0.4em;
+}
+
 .auth-form-container {
   text-align: center;
   padding-top: 3em;

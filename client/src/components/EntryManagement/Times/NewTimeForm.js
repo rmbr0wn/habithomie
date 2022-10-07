@@ -10,19 +10,35 @@ const NewTimeForm = (props) => (
           <div id="creation-form-field-wrapper">
             <div className="creation-form-field-container">
               <label className="creation-field-label"> Hours:
-                <input type="number" className="create-entry-input" name="createHour" min="0" max="23" onChange={props.handleFormChange}/>
+                <input type="number"
+                  defaultValue={0}
+                  className="create-entry-input"
+                  name="createHour"
+                  min="0"
+                  max="23"
+                  onChange={props.handleFormChange} />
                 { props.errors.createHour && <h3 className="form-error-message">{props.errors.createHour}</h3> }
               </label>
             </div>
             <div className="creation-form-field-container">
               <label className="creation-field-label"> Minutes:
-                <input type="number" className="create-entry-input" name="createMinute" min="0" max="59" onChange={props.handleFormChange}/>
+                <input type="number"
+                  defaultValue={0}
+                  className="create-entry-input"
+                  name="createMinute"
+                  min="0"
+                  max="59"
+                  onChange={props.handleFormChange} />
                 { props.errors.createMinute && <h3 className="form-error-message">{props.errors.createMinute}</h3> }
               </label>
             </div>
             <div className="creation-form-field-container">
               <label className="creation-field-label"> Date:
-                <input type="date" className="create-entry-input" name="createDate" onChange={props.handleFormChange}/>
+                <input type="date"
+                  defaultValue={props.defaultDate}
+                  className="create-entry-input"
+                  name="createDate"
+                  onChange={props.handleFormChange} />
               </label>
             </div>
             <div className="creation-form-field-container">
@@ -61,6 +77,7 @@ NewTimeForm.propTypes = {
   activities: PropTypes.array,
   timeEntryBeingCreated: PropTypes.bool,
   toggleCreateEntry: PropTypes.func,
+  defaultDate: PropTypes.object,
   errors: PropTypes.object
 };
 

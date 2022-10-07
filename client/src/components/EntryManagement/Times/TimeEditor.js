@@ -5,7 +5,7 @@ import { updateTimeEntry, deleteTimeEntry } from "../../../actions/times.js";
 import { convertEntryToSeconds, convertSecondsToMinutesAndHours } from "../../Helpers/TimeConversions.js";
 
 export default function TimeEditor (props) {
-  const [updatedEntryPayload, setUpdatedEntryPayload] = useState({});   // To TimeEditor
+  const [updatedEntryPayload, setUpdatedEntryPayload] = useState({});   
   const dispatch = useDispatch();
 
   function getExistingEntryValue (times, timeId) {

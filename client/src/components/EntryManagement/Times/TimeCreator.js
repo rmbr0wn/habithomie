@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import NewTimeForm from "./NewTimeForm.js";
 import { createTimeEntry } from "../../../actions/times.js";
@@ -9,7 +9,12 @@ const initialFormState = { createHour: 0, createMinute: 0, createDate: new Date(
 
 export default function TimeCreator (props) {
   const [newTimeForm, setNewTimeForm] = useState(initialFormState);
+  const defaultDate = initialFormState.createDate.toISOString().substr(0, 10);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setNewTimeForm(initialFormState);   // Clear form after submission/when switching modes
+  }, [props.timeEntryBeingCreated])
 
   async function submitNewTime (e) {
     e.preventDefault();
@@ -61,6 +66,7 @@ export default function TimeCreator (props) {
             timeEntriesBeingViewed={props.timeEntriesBeingViewed}
             timeEntryBeingCreated={props.timeEntryBeingCreated}
             toggleCreateEntry={props.toggleCreateEntry}
+            defaultDate={defaultDate}
             errors={props.errors} />
       }
     </div>

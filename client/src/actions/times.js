@@ -8,7 +8,6 @@ export const createTimeEntry = (payload) => async (dispatch) => {
 
     return data;
   } catch (error) {
-    console.log(error);
     return error;
   }
 };

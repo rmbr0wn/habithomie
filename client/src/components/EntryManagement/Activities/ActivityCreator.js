@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createActivity } from "../../../actions/activities.js";
 import "./activitycreator.css";
@@ -6,6 +6,10 @@ import "./activitycreator.css";
 export default function ActivityCreator (props) {
   const [newActivity, setNewActivity] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setNewActivity("");    // Clear form after submission/when switching modes
+  }, [props.activityBeingCreated])
 
   async function submitNewActivity (e) {
     e.preventDefault();
