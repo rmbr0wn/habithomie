@@ -18,12 +18,21 @@ export function convertEntryToSeconds (hours, minutes) {
   return hoursToSeconds(hours) + minutesToSeconds(minutes);
 }
 
+// Must always be used in conjunction with convertSecondsToHours (else multiples of 60 returns 0)
 export function convertSecondsToMinutes (seconds) {
-  return Math.floor((seconds/60)%60);
+  if (seconds > 0) {
+    return Math.floor((seconds/60)%60)
+  } else {
+    return 0;
+  }
 }
 
 export function convertSecondsToHours (seconds) {
-  return Math.floor(seconds/3600);
+  if (seconds > 0) {
+    return Math.floor(seconds/3600);
+  } else {
+    return 0;
+  }
 }
 
 export function convertSecondsToMinutesAndHours (seconds) {
@@ -33,5 +42,9 @@ export function convertSecondsToMinutesAndHours (seconds) {
 }
 
 export function convertSecondsToDecimalHours (seconds) {
-  return seconds/3600;
+  if (seconds > 0) {
+    return parseFloat((seconds/3600).toFixed(3));
+  } else {
+    return 0;
+  }
 }

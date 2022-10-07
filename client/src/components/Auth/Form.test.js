@@ -5,20 +5,23 @@ import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Form from "./Form";
 
+const initialErrorsState = { signupEmail: "", signupPassword: "", confirmPassword: "",
+                            loginEmail: "", loginPassword: "", response: "" };
+
+// The base props template. Will change Form props as needed, depending on the test.
+const props = {
+  isSignedUp: true,
+  handleSubmit: function(){},
+  handleChange: function(){},
+  errors: initialErrorsState,
+  successMessage: '',
+  googleSuccess: function(){},
+  googleFailure: function(){},
+  switchFormType: function(){},
+  signupPasswordRef: {}
+}
 
 describe("Sign in form rendering", () => {
-  const props = {
-    isSignedUp: true,
-    handleSubmit: function(){},
-    handleChange: function(){},
-    errors: {},
-    successMessage: '',
-    googleSuccess: function(){},
-    googleFailure: function(){},
-    switchFormType: function(){},
-    signupPasswordRef: {}
-  }
-
   beforeEach(() => {
     render(
       <GoogleOAuthProvider clientId="794956968618-b1o8rcuov3dv6po9a2h5o8q9dejgf980.apps.googleusercontent.com">
@@ -66,18 +69,6 @@ describe("Sign in form rendering", () => {
 
 
 describe("Sign in form input checking", () => {
-  const props = {
-    isSignedUp: true,
-    handleSubmit: function(){},
-    handleChange: function(){},
-    errors: {},
-    successMessage: '',
-    googleSuccess: function(){},
-    googleFailure: function(){},
-    switchFormType: function(){},
-    signupPasswordRef: {}
-  }
-
   beforeEach(() => {
     render(
       <GoogleOAuthProvider clientId="794956968618-b1o8rcuov3dv6po9a2h5o8q9dejgf980.apps.googleusercontent.com">
@@ -124,23 +115,11 @@ describe("Sign in form input checking", () => {
 
 
 describe("Sign up form rendering", () => {
-  const props = {
-    isSignedUp: false,
-    handleSubmit: function(){},
-    handleChange: function(){},
-    errors: {},
-    successMessage: '',
-    googleSuccess: function(){},
-    googleFailure: function(){},
-    switchFormType: function(){},
-    signupPasswordRef: React.createRef()
-  }
-
   beforeEach(() => {
     render(
       <GoogleOAuthProvider clientId="794956968618-b1o8rcuov3dv6po9a2h5o8q9dejgf980.apps.googleusercontent.com">
         <Form
-          isSignedUp={props.isSignedUp}
+          isSignedUp={false}
           handleSubmit={props.handleSubmit}
           handleChange={props.handleChange}
           errors={props.errors}
@@ -148,7 +127,7 @@ describe("Sign up form rendering", () => {
           googleSuccess={props.googleSuccess}
           googleFailure={props.googleFailure}
           switchFormType={props.switchFormType}
-          signupPasswordRef={props.signupPasswordRef}
+          signupPasswordRef={React.createRef()}
         />
       </GoogleOAuthProvider>);
   });
@@ -193,23 +172,11 @@ describe("Sign up form rendering", () => {
 
 
 describe("Sign up form input checking", () => {
-  const props = {
-    isSignedUp: false,
-    handleSubmit: function(){},
-    handleChange: function(){},
-    errors: {},
-    successMessage: '',
-    googleSuccess: function(){},
-    googleFailure: function(){},
-    switchFormType: function(){},
-    signupPasswordRef: React.createRef()
-  }
-
   beforeEach(() => {
     render(
       <GoogleOAuthProvider clientId="794956968618-b1o8rcuov3dv6po9a2h5o8q9dejgf980.apps.googleusercontent.com">
         <Form
-          isSignedUp={props.isSignedUp}
+          isSignedUp={false}
           handleSubmit={props.handleSubmit}
           handleChange={props.handleChange}
           errors={props.errors}
@@ -217,7 +184,7 @@ describe("Sign up form input checking", () => {
           googleSuccess={props.googleSuccess}
           googleFailure={props.googleFailure}
           switchFormType={props.switchFormType}
-          signupPasswordRef={props.signupPasswordRef}
+          signupPasswordRef={React.createRef()}
         />
       </GoogleOAuthProvider>);
   });
