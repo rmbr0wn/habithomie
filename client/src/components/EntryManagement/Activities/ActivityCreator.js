@@ -45,7 +45,7 @@ export default function ActivityCreator (props) {
       { props.activityBeingCreated ?
           <div id="create-activity-input-wrapper">
             <form id="activity-creation-form">
-              <input type="text" id="create-activity-input" placeholder="New activity name" onChange={handleNewActivityChange} />
+              <input type="text" id="create-activity-input" placeholder="New activity name" onChange={handleNewActivityChange} name="createActivityInput"/>
               <div className="create-activity-button-container">
                 <button onClick={submitNewActivity} className="create-activity-button"> Submit </button>
                 <button onClick={props.toggleCreate}  className="create-activity-button"> Cancel </button>

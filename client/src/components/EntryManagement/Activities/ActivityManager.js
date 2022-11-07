@@ -5,7 +5,7 @@ import ActivityCreator from "./ActivityCreator.js";
 import ActivityEditor from "./ActivityEditor.js";
 import "./activitymanager.css";
 
-export default function ActivityManager (props) {
+export default function ActivityManager () {
   const storedUser = useSelector((state) => state.authReducer);
   const storedActivities = useSelector((state) => state.activitiesReducer);
   const [activityBeingCreated, setActivityBeingCreated] = useState(false);

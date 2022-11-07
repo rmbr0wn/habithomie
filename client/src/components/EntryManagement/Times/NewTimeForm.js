@@ -77,7 +77,7 @@ NewTimeForm.propTypes = {
   activities: PropTypes.array,
   timeEntryBeingCreated: PropTypes.bool,
   toggleCreateEntry: PropTypes.func,
-  defaultDate: PropTypes.object,
+  defaultDate: PropTypes.string,
   errors: PropTypes.object
 };
 
