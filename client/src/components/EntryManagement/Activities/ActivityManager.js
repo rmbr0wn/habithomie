@@ -8,6 +8,7 @@ import "./activitymanager.css";
 export default function ActivityManager () {
   const storedUser = useSelector((state) => state.authReducer);
   const storedActivities = useSelector((state) => state.activitiesReducer);
+  const myStore = useSelector((state) => state);
   const [activityBeingCreated, setActivityBeingCreated] = useState(false);
   const [activitiesBeingViewed, setActivitiesBeingViewed] = useState(false);
   const [editingPayload, setEditingPayload] = useState({ beingEdited: false, id: -1 });
@@ -23,6 +24,12 @@ export default function ActivityManager () {
     }
     // eslint-disable-next-line
   }, []);
+
+  // useEffect(() => {
+  //   console.log(storedUser);
+  //   console.log(storedActivities);
+  //   console.log(myStore);
+  // }, [storedUser, storedActivities, myStore])
 
   function toggleCreate () {
     setActivityBeingCreated(!activityBeingCreated);

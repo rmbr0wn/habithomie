@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-oauth/google": "^0.2.6",
+    "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/cypress": "^8.0.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
@@ -11,6 +12,7 @@
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
     "jwt-decode": "^3.1.2",
+    "msw": "^0.48.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
